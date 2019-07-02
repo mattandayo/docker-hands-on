@@ -1,0 +1,17 @@
+version: "3"
+services:
+  rails-web:
+    build: .
+    container_name: rails-web
+    volumes:
+      - .:/mount
+    ports:
+      - 9000:3000
+    depends_on:
+      - rails-mysql
+  rails-mysql:
+    image: mariadb:10.4.3-bionic
+    container_name: rails-mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
